@@ -29,7 +29,48 @@ aws s3 cp data s3://zeekdata --recursive
 ```
 ## Install Trino CLI
 1. Download trino cli executable file [trino-cli-386-executable.jar](https://repo1.maven.org/maven2/io/trino/trino-cli/386/trino-cli-386-executable.jar)
+2. Locate to the folder of the downloaded file
+3. Change the name of the file to trino
+```
+$ mv trino-cli-386-executable.jar trino
+```
+4. Connect to your SEP coordinator by running the following command
+```
+./trino --server http://<your-SEP-coordinator-ip>:8080
+```
 ## Create Schema and Table in S3 Bucket
+1. Create an schema using the hive connector
+```
+trino> create schema hive.zeekschema with (location = 's3://zeekdata');
+```
+2. Create the table, hive.zeekschema.conn
+```
+trino> CREATE TABLE hive.zeekschema.conn ( 
+    ->     "date" VARCHAR,
+    ->     uid VARCHAR,
+    ->     "id.orig_h" VARCHAR,
+    ->     "id.orig_p" INT,
+    ->     "id.resp_h" VARCHAR,
+    ->     "id.resp_p" INT,
+    ->     proto VARCHAR,   service VARCHAR,
+    ->     duration DOUBLE,
+    ->     orig_bytes BIGINT,
+    ->     resp_bytes BIGINT,
+    ->     conn_state VARCHAR,
+    ->     local_orig BOOLEAN,
+    ->     local_resp BOOLEAN,
+    ->     missed_bytes BIGINT,
+    ->     history VARCHAR,
+    ->     orig_pkts BIGINT,
+    ->     orig_ip_bytes BIGINT,
+    ->     resp_pkts BIGINT,
+    ->     resp_ip_bytes BIGINT,
+    ->     ts TIMESTAMP
+    -> ) WITH (
+    ->     format = 'parquet',
+    ->    external_location = 's3://zeekdata/data/conn/date=2022-04-21/'
+    -> );
+```
 ## Use Pandas to Query Table in S3 bucket
 ## Data Preparation using Pandas and SKlearn
 
