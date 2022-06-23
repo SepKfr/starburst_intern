@@ -2,7 +2,7 @@
 ## Zeek data
 ## AWS account
 - You need to have an aws account with Starburst Enterprise Platform (SEP) cluster
-- - hh
+-- hh
 
 ## AWS CLI
 ## Upload to S3 Bucket
