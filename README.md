@@ -135,37 +135,37 @@ dtypes: bool(2), float64(3), int64(7), object(9)
 
 2. The second step is to remove or impute the NULL values
     - We first get the percentage of NULL values per each column
-    ```
-    print(df.isnull().sum() / df.shape[0])
-    ```
-    ```
-       date             0.000000
-        uid              0.000000
-        id.orig_h        0.000000
-        id.orig_p        0.000000
-        id.resp_h        0.000000
-        id.resp_p        0.000000
-        proto            0.000000
-        service          0.280000
-        duration         0.366333
-        orig_bytes       0.366333
-        resp_bytes       0.366333
-        conn_state       0.000000
-        local_orig       0.000000
-        local_resp       0.000000
-        missed_bytes     0.000000
-        history          0.002000
-        orig_pkts        0.000000
-        orig_ip_bytes    0.000000
-        resp_pkts        0.000000
-        resp_ip_bytes    0.000000
-        ts               0.000000
-        dtype: float64
-    ```
+```
+print(df.isnull().sum() / df.shape[0])
+```
+```
+   date             0.000000
+    uid              0.000000
+    id.orig_h        0.000000
+    id.orig_p        0.000000
+    id.resp_h        0.000000
+    id.resp_p        0.000000
+    proto            0.000000
+    service          0.280000
+    duration         0.366333
+    orig_bytes       0.366333
+    resp_bytes       0.366333
+    conn_state       0.000000
+    local_orig       0.000000
+    local_resp       0.000000
+    missed_bytes     0.000000
+    history          0.002000
+    orig_pkts        0.000000
+    orig_ip_bytes    0.000000
+    resp_pkts        0.000000
+    resp_ip_bytes    0.000000
+    ts               0.000000
+    dtype: float64
+```
     - We remove all the rows with NULL values
-    ```
-    df.dropna(inplace=True)
-    ```
+```
+df.dropna(inplace=True)
+```
 3. The next step is to normalize the numerical and encode the categorical variables
 ```
 import sklearn.preprocessing
@@ -187,38 +187,38 @@ for col in cat_cols:
 4. Now, our data is ready for model training
     - Suppose the inquiry is to classify customers based on the service they use for connection
     - To this end, we build a Logistic Regression model
-    ```
-    # independent varibales (inputs)
-    X = df_trans[df.columns[~df.columns.isin(["service"])]]
-    # dependent varible (target)
-    y = df_trans["service"]
-    
-    # split to train and test with 0.7 for train and 0.3 for test
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-    
-    # define and fit logistic regression model
-    model = LogisticRegression(random_state=1234)
-    model.fit(X_train, y_train)
-    # make prediction
-    y_hat = model.predict(X_test)
-    prediction = cat_scalers["service"].inverse_transform(y_hat)
-    true_y = cat_scalers["service"].inverse_transform(y_test)
-    # classification report
-    print(classification_report(true_y, prediction))
-    ```
-    ```
-                      precision    recall  f1-score   support
+```
+# independent varibales (inputs)
+X = df_trans[df.columns[~df.columns.isin(["service"])]]
+# dependent varible (target)
+y = df_trans["service"]
 
-            dhcp       0.00      0.00      0.00         1
-             dns       0.99      1.00      1.00       308
-            http       0.00      0.00      0.00         1
-             ntp       0.00      0.00      0.00         1
-             ssl       0.99      0.99      0.99       173
+# split to train and test with 0.7 for train and 0.3 for test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-        accuracy                           0.99       484
-        macro avg       0.40      0.40      0.40       484
-     weighted avg       0.99      0.99      0.99       484
-    ```
+# define and fit logistic regression model
+model = LogisticRegression(random_state=1234)
+model.fit(X_train, y_train)
+# make prediction
+y_hat = model.predict(X_test)
+prediction = cat_scalers["service"].inverse_transform(y_hat)
+true_y = cat_scalers["service"].inverse_transform(y_test)
+# classification report
+print(classification_report(true_y, prediction))
+```
+```
+                  precision    recall  f1-score   support
+
+        dhcp       0.00      0.00      0.00         1
+         dns       0.99      1.00      1.00       308
+        http       0.00      0.00      0.00         1
+         ntp       0.00      0.00      0.00         1
+         ssl       0.99      0.99      0.99       173
+
+    accuracy                           0.99       484
+    macro avg       0.40      0.40      0.40       484
+ weighted avg       0.99      0.99      0.99       484
+```
     - The overall accuracy of the model is 0.99 which indicates a very accurate model
 # Summery
 In this post, you learned how to access a dataset on a cloud based storage like delta lake, and you learned how to build a model using the data provided by Trino query engine. Last but not least, we can conclude that Trino can be easily integrated with data analysis tools such as python.
