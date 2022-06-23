@@ -219,6 +219,6 @@ print(classification_report(true_y, prediction))
     macro avg       0.40      0.40      0.40       484
  weighted avg       0.99      0.99      0.99       484
 ```
-    - The overall accuracy of the model is 0.99 which indicates a very accurate model
+   - The overall accuracy of the model is 0.99 which indicates a very accurate model
 # Summery
 In this post, you learned how to access a dataset on a cloud based storage like delta lake, and you learned how to build a model using the data provided by Trino query engine. Last but not least, we can conclude that Trino can be easily integrated with data analysis tools such as python.
