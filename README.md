@@ -167,7 +167,7 @@ print(df.isnull().sum() / df.shape[0])
 df.dropna(inplace=True)
 ```
 3. The next step is to normalize the numerical and encode the categorical variables
-```
+```diff
 import sklearn.preprocessing
 num_cols = df._get_numeric_data().columns # numerical columns
 cat_cols = df.columns[~df.columns.isin(num_cols)] # categorical columns
