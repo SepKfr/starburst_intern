@@ -1,7 +1,7 @@
 # Data Analysis using Trino
 ## Zeek data
 ## AWS account
-### You need to have an aws account with Starburst Enterprise Platform (SEP) cluster
+[-] You need to have an aws account with Starburst Enterprise Platform (SEP) cluster
 
 ## AWS CLI
 ## Upload to S3 Bucket
