@@ -97,7 +97,7 @@ connection = engine.connect()
 df = pd.read_sql_query('''select * from hive.zeekschema.conn order by random() limit 3000''', con=connection)
 ```
 ## Data Preparation using Pandas and SKlearn
-1. The first step is to get familiar with the content of the data
+1. The first step is to get familiar with the content of the data (it can be observed that some columns have NULL values)
 ```
 print(df.info())
 ```
@@ -128,12 +128,12 @@ Data columns (total 21 columns):
  20  ts             3000 non-null   object 
 dtypes: bool(2), float64(3), int64(7), object(9)
 ```
-3. The second step is to remove or impute the NULL values
+
+2. The second step is to remove or impute the NULL values
     - We first get the percentage of NULL values per each column
     ```
     print(df.isnull().sum() / df.shape[0])
     ```
-    - We 
     ```
        date             0.000000
         uid              0.000000
@@ -158,4 +158,27 @@ dtypes: bool(2), float64(3), int64(7), object(9)
         ts               0.000000
         dtype: float64
     ```
+    - We remove all the rows with NULL values
+    ```
+    df.dropna(inplace=True)
+    ```
+3. The next step is to normalized the numerical and encode the categorical variables
+```
+import sklearn.preprocessing
+num_cols = df._get_numeric_data().columns # numerical columns
+cat_cols = df.columns[~df.columns.isin(num_cols)] # categorical columns
+real_scaler = sklearn.preprocessing.StandardScaler().fit(df[num_cols]) # normalize numerical variables
+cat_scalers = {}
+for col in cat_cols:
+    srs = df[col].apply(str)
+    cat_scalers[col] = sklearn.preprocessing.LabelEncoder().fit(srs.values) # encode categorical variables
+
+df_trans = df.copy()
+df_trans[num_cols] = real_scaler.transform(df[num_cols].values) # transform to normalized values
+for col in cat_cols:
+    string_df = df[col].apply(str)
+    df_trans[col] = cat_scalers[col].transform(string_df) # transform to encoded values
+
+```
+    
 
