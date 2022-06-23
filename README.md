@@ -204,17 +204,17 @@ for col in cat_cols:
     print(classification_report(true_y, prediction))
     ```
     ```
-                  precision    recall  f1-score   support
+                      precision    recall  f1-score   support
 
-        dhcp       0.00      0.00      0.00         1
-         dns       0.99      1.00      1.00       308
-        http       0.00      0.00      0.00         1
-         ntp       0.00      0.00      0.00         1
-         ssl       0.99      0.99      0.99       173
+            dhcp       0.00      0.00      0.00         1
+             dns       0.99      1.00      1.00       308
+            http       0.00      0.00      0.00         1
+             ntp       0.00      0.00      0.00         1
+             ssl       0.99      0.99      0.99       173
 
-    accuracy                           0.99       484
-    macro avg       0.40      0.40      0.40       484
-    weighted avg       0.99      0.99      0.99       484
+        accuracy                           0.99       484
+        macro avg       0.40      0.40      0.40       484
+     weighted avg       0.99      0.99      0.99       484
     ```
     - The overall accuracy of the model is 0.99 which indicates a very accurate model
 # Summery
