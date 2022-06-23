@@ -22,7 +22,13 @@ Default output format [ENTER]:
 ```
 $ aws s3 mb s3://zeekdata
 ```
+2. Locate to the directory where your dataset resides
+3. move your data to zeekdata bucket
+```
+aws s3 cp data s3://zeekdata --recursive
+```
 ## Install Trino CLI
+1. Download trino cli executable file [trino-cli-386-executable.jar](https://repo1.maven.org/maven2/io/trino/trino-cli/386/trino-cli-386-executable.jar)
 ## Create Schema and Table in S3 Bucket
 ## Use Pandas to Query Table in S3 bucket
 ## Data Preparation using Pandas and SKlearn
