@@ -8,7 +8,15 @@
 
 ## AWS CLI
 1. You need aws cli to move the datasets that you want to perform data analysis on to S3 bucket in your aws account
-2. Download and install [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) compatible to your operating system 
+2. Download and install [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) compatible to your operating system
+3. Open your command prompt and config your aws cli
+```
+$ aws configure
+AWS Access Key ID [****************DB6A]: Your access key id
+AWS Secret Access Key [****************nf04]: Your secret access key
+Default region name [us-east-2]: the region where your instances are
+Default output format [ENTER]: Leave blank
+```
 ## Upload to S3 Bucket
 ## Install Trino CLI
 ## Create Schema and Table in S3 Bucket
