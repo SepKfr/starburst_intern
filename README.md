@@ -15,9 +15,13 @@ $ aws configure
 AWS Access Key ID [****************DB6A]: Your access key id
 AWS Secret Access Key [****************nf04]: Your secret access key
 Default region name [us-east-2]: the region where your instances are
-Default output format [ENTER]: Leave blank
+Default output format [ENTER]:
 ```
 ## Upload to S3 Bucket
+1. Create a S3 bucket called zeekdata using aws cli 
+```
+$ aws s3 mb s3://zeekdata
+```
 ## Install Trino CLI
 ## Create Schema and Table in S3 Bucket
 ## Use Pandas to Query Table in S3 bucket
