@@ -72,6 +72,30 @@ trino> CREATE TABLE hive.zeekschema.conn (
     -> );
 ```
 ## Use Pandas to Query Table in S3 bucket
+1. Install trino
+```
+$ pip install trino
+```
+2. Install SQLAlchemy
+```
+$ pip install trino[sqlalchemy] 
+```
+3. Create a python file e.g. zeekanalysis.py
+```
+$ vi zeekanalysis.py
+```
+4. Import sqlalchemy and create engine using trino
+5. Pandas is a great tool for data analysis, hence we read the table as a dataframe object while selecting 3000 rows by random
+```
+from sqlalchemy import create_engine
+from sqlalchemy.sql.expression import select, text
+import pandas as pd
+
+engine = create_engine('trino://<USER_NAME>:<PASSWORD>@<SERVER-IP>:8080/system')
+connection = engine.connect()
+
+df = pd.read_sql_query('''select * from hive.zeekschema.conn order by random() limit 3000''', con=connection)
+```
 ## Data Preparation using Pandas and SKlearn
 
 
