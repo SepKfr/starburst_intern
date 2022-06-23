@@ -97,5 +97,65 @@ connection = engine.connect()
 df = pd.read_sql_query('''select * from hive.zeekschema.conn order by random() limit 3000''', con=connection)
 ```
 ## Data Preparation using Pandas and SKlearn
-
+1. The first step is to get familiar with the content of the data
+```
+print(df.info())
+```
+```
+Data columns (total 21 columns):
+ #   Column         Non-Null Count  Dtype  
+---  ------         --------------  -----  
+ 0   date           3000 non-null   object 
+ 1   uid            3000 non-null   object 
+ 2   id.orig_h      3000 non-null   object 
+ 3   id.orig_p      3000 non-null   int64  
+ 4   id.resp_h      3000 non-null   object 
+ 5   id.resp_p      3000 non-null   int64  
+ 6   proto          3000 non-null   object 
+ 7   service        2160 non-null   object 
+ 8   duration       1900 non-null   float64
+ 9   orig_bytes     1900 non-null   float64
+ 10  resp_bytes     1900 non-null   float64
+ 11  conn_state     3000 non-null   object 
+ 12  local_orig     3000 non-null   bool   
+ 13  local_resp     3000 non-null   bool   
+ 14  missed_bytes   3000 non-null   int64  
+ 15  history        2993 non-null   object 
+ 16  orig_pkts      3000 non-null   int64  
+ 17  orig_ip_bytes  3000 non-null   int64  
+ 18  resp_pkts      3000 non-null   int64  
+ 19  resp_ip_bytes  3000 non-null   int64  
+ 20  ts             3000 non-null   object 
+dtypes: bool(2), float64(3), int64(7), object(9)
+```
+3. The second step is to remove or impute the NULL values
+    - We first get the percentage of NULL values per each column
+    ```
+    print(df.isnull().sum() / df.shape[0])
+    ```
+    - We 
+    ```
+       date             0.000000
+        uid              0.000000
+        id.orig_h        0.000000
+        id.orig_p        0.000000
+        id.resp_h        0.000000
+        id.resp_p        0.000000
+        proto            0.000000
+        service          0.280000
+        duration         0.366333
+        orig_bytes       0.366333
+        resp_bytes       0.366333
+        conn_state       0.000000
+        local_orig       0.000000
+        local_resp       0.000000
+        missed_bytes     0.000000
+        history          0.002000
+        orig_pkts        0.000000
+        orig_ip_bytes    0.000000
+        resp_pkts        0.000000
+        resp_ip_bytes    0.000000
+        ts               0.000000
+        dtype: float64
+    ```
 
