@@ -12,8 +12,8 @@ The use of data analysis can be of a great help to conduct further interpretatio
 
 ## AWS CLI
 1. You need aws cli to move the datasets that you want to perform data analysis on to S3 bucket in your aws account
-2. Download and install [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) compatible to your operating system
-3. Open your command prompt and config your aws cli
+3. Download and install [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) compatible to your operating system
+4. Open your command prompt and config your aws cli
 ```
 $ aws configure
 AWS Access Key ID [****************DB6A]: Your access key id
@@ -27,7 +27,7 @@ Default output format [ENTER]:
 $ aws s3 mb s3://zeekdata
 ```
 2. Locate the directory where your dataset resides
-3. move your data to zeekdata bucket
+3. Move your data to zeekdata bucket
 ```
 aws s3 cp data s3://zeekdata --recursive
 ```
