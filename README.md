@@ -1,5 +1,7 @@
 # Data Analysis using Trino
 ## Zeek data
+Zeek is on open source network monitoring tool. Zeek sits on a “sensor,” a hardware, software, virtual, or cloud platform that quietly and unobtrusively observes network traffic. Zeek interprets what it sees and creates compact, high-fidelity transaction logs, file content, and fully customized output, suitable for manual review on disk or in a more analyst-friendly tool like a security and information event management (SIEM) system. 
+The use of data analysis can be of a great help to conduct further interpretation of the data captured by zeek servers. However the recorded data usually sits on delta lake clouds which can be efficiently accessed by Trino. Therefore the inetgration of Trino and data analysis tool such as python is a necessity. In this post, you are provided with a step-by-step tutorial from querying a data in S3 bucket using Trino to building a classification model to categorize the internet service provider for each connection.
 
 ## AWS account
 1. You need to have an aws account with Starburst Enterprise Platform (SEP) cluster
@@ -218,4 +220,4 @@ for col in cat_cols:
     ```
     - The overall accuracy of the model is 0.99 which indicates a very accurate model
 # Summery
-
+In this post, you learned how to access a dataset on a cloud based storage like delta lake, and you learned how to build a model using the data provided by Trino query engine. As a result, Trino can be easily integrated with data analysis tool such as python.
