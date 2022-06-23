@@ -134,7 +134,7 @@ dtypes: bool(2), float64(3), int64(7), object(9)
 ```
 
 2. The second step is to remove or impute the NULL values
-    - We first get the percentage of NULL values per each column
+    - We first get the percentage of NULL values per each column and remove all the rows with NULL values
 ```
 print(df.isnull().sum() / df.shape[0])
 ```
@@ -162,7 +162,6 @@ print(df.isnull().sum() / df.shape[0])
     ts               0.000000
     dtype: float64
 ```
-    - We remove all the rows with NULL values
 ```
 df.dropna(inplace=True)
 ```
