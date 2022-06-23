@@ -26,14 +26,14 @@ Default output format [ENTER]:
 ```
 $ aws s3 mb s3://zeekdata
 ```
-2. Locate to the directory where your dataset resides
+2. Locate the directory where your dataset resides
 3. move your data to zeekdata bucket
 ```
 aws s3 cp data s3://zeekdata --recursive
 ```
 ## Install Trino CLI
 1. Download trino cli executable file [trino-cli-386-executable.jar](https://repo1.maven.org/maven2/io/trino/trino-cli/386/trino-cli-386-executable.jar)
-2. Locate to the folder of the downloaded file
+2. Locate the folder of the downloaded file
 3. Change the name of the file to trino
 ```
 $ mv trino-cli-386-executable.jar trino
