@@ -1,4 +1,4 @@
-# Data Analysis using Trino
+# Data Analysis Integration with Trino
 ## Zeek data
 Zeek is on open source network monitoring tool. Zeek sits on a “sensor,” a hardware, software, virtual, or cloud platform that quietly and unobtrusively observes network traffic. Zeek interprets what it sees and creates compact, high-fidelity transaction logs, file content, and fully customized output, suitable for manual review on disk or in a more analyst-friendly tool like a security and information event management (SIEM) system. 
 
