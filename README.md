@@ -37,10 +37,11 @@ aws s3 cp data s3://zeekdata --recursive
 3. Change the name of the file to trino
 ```
 $ mv trino-cli-386-executable.jar trino
+$ chmod +x trino
 ```
 4. Connect to your SEP coordinator by running the following command
 ```
-./trino --server http://<your-SEP-coordinator-ip>:8080
+./trino --server=http://<your-SEP-coordinator-ip>:8080 --user=<USER_NAME>
 ```
 ## Create Schema and Table in S3 Bucket
 1. Create an schema using the hive connector
